@@ -17,7 +17,6 @@ stages:
     steps:
       - task: NodeTool@0
          #versionSpec: '10.x'
-        checkLatest: true
         displayName: 'Install Node.js'
       - script: | #shell script
           npm install
