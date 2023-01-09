@@ -40,7 +40,7 @@ stages:
   dependsOn: build
   displayName: Release onto tomcat
   jobs:
-    - deployment: deployment onto tomcat
+    - deployment: deployment_onto_tomcat
       displayName: WebAppDeployment
       environment: uat
       pool: 
