@@ -13,14 +13,13 @@ stages:
 - stage: build
   displayName: Build Stage
   jobs:
-  - job: angularbuild
+  - job: AngularBuild
     steps:
       - task: NodeTool@0
         inputs:
         versionSpec: '10.x'
         displayName: 'Install Node.js'
-
-      - script: |
+      - script: | #shell script
           npm install
           npm run build
         displayName: 'npm install and build'
@@ -29,7 +28,6 @@ stages:
           SourceFolder: '$(System.DefaultWorkingDirectory)'
           Contents: '/home/vsts/work/1/s/dist/**'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
       - task: PublishBuildArtifacts@1
         inputs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
