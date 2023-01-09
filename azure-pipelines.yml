@@ -41,7 +41,7 @@ stages:
   displayName: Release onto tomcat
   jobs:
     - deployment: deployment onto tomcat
-      displayName: web-app-deployment
+      displayName: WebAppDeployment
       environment: uat
       pool: 
         vmImage: ubuntu-latest
