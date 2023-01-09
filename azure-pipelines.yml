@@ -20,18 +20,35 @@ stages:
          versionSpec: '10.x'
         displayName: 'Install Node.js'
       
-      #shell script to install node modules and ng build
-      - script: | 
-          npm install
-          npm run build
-        displayName: 'npm install and build'
-      - task: CopyFiles@2
-        inputs:
-          SourceFolder: '$(System.DefaultWorkingDirectory)'
-          Contents: '/home/vsts/work/1/s/dist/**'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)'
-      - task: PublishBuildArtifacts@1
-        inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-          ArtifactName: 'drop'
-          publishLocation: 'Container'
+      # #shell script to install node modules and ng build
+      # - script: | 
+      #     npm install
+      #     npm run build
+      #   displayName: 'npm install and build'
+      # - task: CopyFiles@2
+      #   inputs:
+      #     SourceFolder: '$(System.DefaultWorkingDirectory)'
+      #     Contents: '/home/vsts/work/1/s/dist/**'
+      #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      # - task: PublishBuildArtifacts@1
+      #   inputs:
+      #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      #     ArtifactName: 'drop'
+      #     publishLocation: 'Container'
+
+- stage: release
+  dependsOn: build
+  displayName: Release onto tomcat
+  jobs:
+    - deployment: deployment onto tomcat
+      displayName: web-app-deployment
+      environment: uat
+      pool: 
+        vmImage: ubuntu-latest
+      strategy:
+       runOnce:
+         deploy:
+           steps:
+             - 
+
+ 
