@@ -16,9 +16,12 @@ stages:
   - job: AngularBuild
     steps:
       - task: NodeTool@0
-         #versionSpec: '10.x'
+        inputs:
+         versionSpec: '10.x'
         displayName: 'Install Node.js'
-      - script: | #shell script
+      
+      #shell script to install node modules and ng build
+      - script: | 
           npm install
           npm run build
         displayName: 'npm install and build'
