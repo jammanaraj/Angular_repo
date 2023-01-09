@@ -56,7 +56,15 @@ stages:
                 artifactName: 'drop'
                 itemPattern: 'dist/**'
                 downloadPath: '$(System.ArtifactsDirectory)'
-          
+  
+            - task: WindowsMachineFileCopy@2
+              inputs:
+                SourcePath: '$(System.ArtifactsDirectory)'
+                MachineNames: '20.121.220.34'
+                AdminUserName: 'AssetsVmAdmin'
+                AdminPassword: 'Passw0rd@123'
+                TargetPath: 'C:/programfiles'
+                CleanTargetBeforeCopy: true
           
 
  
