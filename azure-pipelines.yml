@@ -36,36 +36,36 @@ stages:
           ArtifactName: 'drop'
           publishLocation: 'Container'
 
-- stage: release
-  dependsOn: build
-  displayName: Release onto tomcat
-  jobs:
-    - deployment: deployment_onto_tomcat
-      displayName: WebAppDeployment
-      environment: uat
-      pool: 
-        vmImage: ubuntu-latest
-      strategy:
-       runOnce:
-         deploy:
-           steps:
-            - task: DownloadBuildArtifacts@1
-              inputs:
-                buildType: 'current'
-                downloadType: 'single'
-                artifactName: 'drop'
-                itemPattern: 'dist/**'
-                downloadPath: '$(System.ArtifactsDirectory)'
+# - stage: release
+#   dependsOn: build
+#   displayName: Release onto tomcat
+#   jobs:
+#     - deployment: deployment_onto_tomcat
+#       displayName: WebAppDeployment
+#       environment: uat
+#       pool: 
+#         vmImage: ubuntu-latest
+#       strategy:
+#        runOnce:
+#          deploy:
+#            steps:
+#             - task: DownloadBuildArtifacts@1
+#               inputs:
+#                 buildType: 'current'
+#                 downloadType: 'single'
+#                 artifactName: 'drop'
+#                 itemPattern: 'dist/**'
+#                 downloadPath: '$(System.ArtifactsDirectory)'
                 
   
-            - task: WindowsMachineFileCopy@2
-              inputs:
-                SourcePath: '$(System.ArtifactsDirectory)'
-                MachineNames: '20.121.220.34'
-                AdminUserName: $(username)
-                AdminPassword: $(password)
-                TargetPath: 'C:/programfiles'
-                CleanTargetBeforeCopy: true
+#             - task: WindowsMachineFileCopy@2
+#               inputs:
+#                 SourcePath: '$(System.ArtifactsDirectory)'
+#                 MachineNames: '20.121.220.34'
+#                 AdminUserName: $(username)
+#                 AdminPassword: $(password)
+#                 TargetPath: 'C:/programfiles'
+#                 CleanTargetBeforeCopy: true
           
 
  
