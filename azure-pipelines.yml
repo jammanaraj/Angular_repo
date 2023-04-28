@@ -74,7 +74,7 @@ stages:
                 SourcePath: '$(System.ArtifactsDirectory)'
                 MachineNames: 'vam-ado-server.westcentralus.cloudapp.azure.com'
                 AdminUserName: '$(variables.username)'
-                AdminPassword: '$(variables.password)'
+                AdminPassword: 'raj@12345678'
                 TargetPath: 'C:\httpd-2.4.54-win64-VS16\Apache24\htdocs'
                 CleanTargetBeforeCopy: true
 
