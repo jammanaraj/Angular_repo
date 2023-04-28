@@ -16,7 +16,6 @@ variables:
 - name: username
   value: vm
 
-
 stages:
 - stage: build
   displayName: Build Stage
@@ -52,11 +51,11 @@ stages:
 
 - stage: release
   dependsOn: build
-  displayName: Release onto tomcat
+  displayName: Release onto httpd
   jobs:
-    - deployment: deployment_onto_tomcat
+    - deployment: deployment_onto_httpd
       displayName: WebAppDeployment
-      environment: uat
+      environment: dev
       strategy:
        runOnce:
          deploy:
