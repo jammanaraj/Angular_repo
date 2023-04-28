@@ -34,6 +34,11 @@ stages:
           npm install
           npm run build
         displayName: 'npm install and build'
+      - task: AngularCLI@1
+        inputs:
+          command: 'build'
+          project: '$(System.DefaultWorkingDirectory)'
+          DisableAnalytics: false
       - task: CopyFiles@2
         inputs:
           SourceFolder: '$(System.DefaultWorkingDirectory)'
@@ -53,8 +58,6 @@ stages:
     - deployment: deployment_onto_tomcat
       displayName: WebAppDeployment
       environment: uat
-      pool: 
-        vmImage: ubuntu-latest
       strategy:
        runOnce:
          deploy:
