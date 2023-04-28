@@ -18,8 +18,6 @@ variables:
 - name: password
   value: raj@12345678
 
-
-
 stages:
 - stage: build
   displayName: Build Stage
@@ -39,7 +37,8 @@ stages:
       - task: CopyFiles@2
         inputs:
           SourceFolder: '$(System.DefaultWorkingDirectory)'
-          Contents: '/home/vsts/work/1/s/dist/**'
+          # Contents: '/home/vsts/work/1/s/dist/**'
+          Contents: $(System.DefaultWorkingDirectory)/dist/*
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
       - task: PublishBuildArtifacts@1
         inputs:
